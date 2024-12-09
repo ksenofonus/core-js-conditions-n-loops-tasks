@@ -491,20 +491,21 @@ function sortByAsc(arr) {
  */
 function shuffleChar(str, iterations) {
   let s = str;
-  const length = str.length - 1;
-  let i = iterations;
-  if (i >= length) i = iterations % 2;
-  let even = '';
-  let odds = '';
-  for (i; i > 0; i -= 1) {
-    for (let j = 0; j <= length; j += 1) {
+  let it = iterations;
+  for (let i = 1; i <= it; i += 1) {
+    let even = '';
+    let odds = '';
+    for (let j = 0; j < s.length; j += 1) {
       if (j % 2 === 0) even += s[j];
       else odds += s[j];
     }
     s = even + odds;
-    even = '';
-    odds = '';
+    if (s === str) {
+      it %= i;
+      i = 0;
+    }
   }
+
   return s;
 }
 
